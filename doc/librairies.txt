@@ -1,0 +1,23 @@
+### var-dumper : Permet d'avoir des fonctions var_dump plus lisibles.
+    COMMANDE : composer require symfony/var-dumper
+    fonctions :
+        - dump($variable) => comme un var_dump mais en plus lisible.
+        - dd($variable) => fait un dump + die.
+
+### HttpFoundation :
+    COMMANDE : composer require symfony/http-foundation
+    use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\HttpFoundation\Response;
+    $request = Request::createFromGlobals();
+        request = $_POST
+        query = $_GET
+        server = $_SERVER
+        cookies = $_COOKIES
+        files = $_FILES
+
+### Symfony Flex
+    COMMANDE : composer require sensio/framework-extra-bundle
+    - Annotations : composer require annotations
+
+
+

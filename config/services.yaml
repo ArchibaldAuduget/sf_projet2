@@ -20,6 +20,17 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+        autowire: true
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    Cocur\Slugify\Slugify: ~
+    
+    # App\Taxes\Calculator:
+    #     arguments:
+    #         tva: 20
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

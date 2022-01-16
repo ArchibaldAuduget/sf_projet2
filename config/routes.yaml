@@ -1,3 +1,9 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# Nom de la route. Attention à bien respecter l'indentation sinon ça ne fonctionne pas !
+index:
+  # url traité : Ici rien (modelisé par le '/') puisqu'on se réfère à l'index.
+   path: /
+  #  Outil de traitement : Ici on lui dit que l'url sera traité par la fonction 'index' de la classe 'TestController' situé dans le chemin 'App\Controller\TestController'.
+  # (App étant conventionnellement le namespace de src).
+   controller: App\Controller\TestController::index
+
+

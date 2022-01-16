@@ -1,0 +1,14 @@
+### Commande pour créer un nouveau projet dans la dernière version Long-Term Support :
+    symfony new (nom du projet) --version=lts
+
+### Lancer le serveur en local :
+    - php -S localhost:8000 -t public => Lance en serveur interne php via port inutilisé.
+    - symfony server:ca:install => Permet d'installer en local une authorité de certification (https).
+    - symfony serve => Lance en serveur interne via symfony. (La suite de commande symfony server:ca:install + symfony serve permet de dev en https directement en interne).
+    - symfony serve -d => Permet de faire tourner le serveur tout en gardant la main sur la console.
+    - symfony server:stop => Permet de stopper le serveur si celui ci tourne en fond sur la console.
+
+### Liste commandes principales de bin :
+    - php bin/console => Donne la liste des commandes possibles via bin.
+    - php bin/console debug:autowiring => Permet de voir la liste des services pouvant être livrés dans les classes.
+    

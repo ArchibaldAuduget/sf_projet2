@@ -1,0 +1,20 @@
+test:
+  # On retrouve les paramètres de la route dans les atrributs de la requete. On passe le requirements en <> et le defaults en ?
+  path: /test/{age<\d+>?0}
+  controller: App\Controller\TestController::test
+  # # Pour éviter les erreurs, on définie la valeur de {age} par défault.
+  # defaults:
+  #   age: 0
+  # # On met des contraintes à l'attribut age. \d+ = le chiffre doit être un entier.
+  # requirements:
+  #   age: \d+
+  # Permet d'obliger la méthode de la requête
+  methods: [GET, POST]
+  #Met une contrainte sur l'host. 
+  # host: {subdomain}.monsite.com
+  #Met une contrainte sur la route (oblige https)
+  schemes: [https, http]
+
+hello:
+  path: /hello/{name?world}
+  controller: App\Controller\HelloController::hello
