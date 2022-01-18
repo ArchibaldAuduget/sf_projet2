@@ -19,5 +19,22 @@
     COMMANDE : composer require sensio/framework-extra-bundle
     - Annotations : composer require annotations
 
+### Slugify :
+    COMMANDE : composer require cocur/slugify
+    Permet de convertir une string en slug.
+    - Ex : $slugify->slugify("string à convertir")
 
 
+### Doctrine :
+    - COMMANDE : composer require doctrine
+    DATABASE_URL="mysql://root:@127.0.0.1:3306/symfony?serverVersion=mariadb-10.4.10" : Path pour la BDD à mettre dans .env
+
+### Fixtures/Faker
+    - CMD : composer require orm-fixtures => PErmet d'avoir accès à un jeu de fausses données
+    - CMD : composer require --dev fakerphp/faker => Librairie de fixtures
+    - Extension de faker : composer require liorchamla/faker-prices
+    - Extension de faker : composer require mbezhanov/faker-provider-collection
+    - Extension de faker : composer require bluemmb/faker-picsum-photos-provider
+
+### COmposant string de symfony
+    - CMD : composer require string

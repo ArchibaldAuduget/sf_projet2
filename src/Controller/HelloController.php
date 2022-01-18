@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Taxes\Calculator;
+use App\Taxes\Detector;
 use Cocur\Slugify\Slugify;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,17 +14,19 @@ use Twig\Environment;
 
 class HelloController extends AbstractController
 {
-    protected $calculator;
-    protected $tva;
 
-    // public function __construct(float $tva) {
-    //     $this->tva = $tva;
-    // }
-
-
-    public function hello($name, Slugify $slugify, Environment $twig) {
-        dump($twig);
-        dump($slugify->slugify("Hello World"));
-        return New Response("Hello $name");
+    #[Route('/hello/{name?world}', name: 'hello')]
+    public function hello($name = 'World') {
+        return $this->render('hello2.html.twig', [
+            'prenom' => $name,
+        ]);
     }
+
+    #[Route('/example', name: 'example')]
+    public function example() {
+        return $this->render('example.html.twig', [
+            'age' => 33,
+        ]);
+    }
+
 }

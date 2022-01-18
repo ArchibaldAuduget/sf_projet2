@@ -4,7 +4,11 @@ namespace App\Taxes;
 
 // class Calculator
 // {
-//     public function calcul(float $prix): float {
-//         return $prix * (20/100);
+//     public function detect($prix): bool {
+//         if ($prix > 100) {
+//             return true;
+//         } else {
+//             return false;
+//         }
 //     }
 // }

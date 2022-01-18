@@ -1,0 +1,15 @@
+PB : SQLSTATE[42S01]: Base table or view already exists: 1050 T
+
+
+Alors ce qui a du se passer ici est que tu as du créer plusieurs migrations SANS LES JOUER, 
+donc il a plusieurs fichiers qui contiennent l'instruction de créer la table Category.
+
+Dans ce cas ce que je fais pour ne pas perdre pied :
+1) Je supprime la base de données : doctrine:database:drop --force
+2) Je recréé la base de données, vide : doctrine:database:create
+3) Je supprime tous les fichiers de migration
+4) Je relance un : make:migration qui va donc contenir en un seul fichier toute la création de toutes les tables
+5) Je rejoue la migration : doctrine:migrations:migrate
+6) Je rejoue les fixtures : doctrine:fixtures:load
+
+Et voilà :)

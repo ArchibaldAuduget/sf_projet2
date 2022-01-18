@@ -7,7 +7,10 @@
 ### Le dossier config archive toutes les configurations.
     - Le fichier routes.yaml permet de configurer les routes en suivant le modèle yaml.
     - On peut créer plusieurs fichiers de routes .yaml dans le dossier routes, symfony les prendra en compte automatiquement.
+    - services.yaml permet de délivrer des services et passer des arguments aux méthodes construct et celles liées aux routes.
 
 ### Le dossier src est le dossier ou on va mettre tout le code métier, architecturé en MVC
 
 ### Le dossier bin est un utilitaire qui contient la console. On y accède directement via la console de l'IDE en tapant php bin/console
+
+### Template est le dossier ou sera stocké tous nos fichiers twig.

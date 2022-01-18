@@ -15,6 +15,6 @@ test:
   #Met une contrainte sur la route (oblige https)
   schemes: [https, http]
 
-hello:
-  path: /hello/{name?world}
-  controller: App\Controller\HelloController::hello
+# hello:
+#   path: /hello/{name?world}
+#   controller: App\Controller\HelloController::hello

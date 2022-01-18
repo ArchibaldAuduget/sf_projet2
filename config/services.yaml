@@ -27,6 +27,10 @@ services:
         tags: ['controller.service_arguments']
 
     Cocur\Slugify\Slugify: ~
+
+    App\Taxes\Detector:
+        arguments:
+            $seuil: 100
     
     # App\Taxes\Calculator:
     #     arguments:

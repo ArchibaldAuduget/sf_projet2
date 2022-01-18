@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salut</title>
+</head>
+<body>
+
+    {# Syntaxe de l'affichage, <?= $name ?> #}
+    <h1>Hello {{name}}</h1>
+    <p>Vous avez {{age}} ans</p>
+
+    {# Syntaxe des conditions #}
+    {% if age >= 18 %}
+        <p>Vous êtes un adulte</p>
+    {% else %}
+        <p>Vous êtes mineur</p>
+    {% endif %}
+
+    {# Syntaxe du foreach #}
+    <ul>
+        {% for personne in prenoms %}
+            {# !! Upper ne modifie pas la valeur de la variable, c'est juste un filtre d'affichage #}
+            <li>{{personne | upper}}</li>
+        {% endfor %}
+    </ul>
+
+    {# Syntaxe du for #}
+    <ul>
+        {% for i in 1..10 %}
+           <li>Numéro {{i}}</li> 
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
