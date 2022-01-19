@@ -35,4 +35,6 @@
 
 ### Debug pack
     - CMD : composer require debug
-    
+
+### Formulaires
+    - php bin/console make:form => Créer une classe de formulaire

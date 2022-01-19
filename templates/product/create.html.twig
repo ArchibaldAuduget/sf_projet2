@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+{# Necessaire au fonctionnement du theme du form #}
+{# {% form_theme formview 'bootstrap_5_layout.html.twig' %} #}
+
+{% block title %}
+    Creation produit
+{% endblock %}
+
+{% block body %}
+    <h1>Nouveau produit</h1>
+
+    {# fonction qui affiche sous forme de formulaire #}
+    {# {{form(formview)}} #}
+
+    {# On décompose étape par étape le form(formview) afin de le personnaliser  #}
+    {{form_start(formview)}}
+    {{form_errors(formview)}}
+    {# {{form_widget(formview)}} #}
+
+    <div class="row">
+        <div class="col">
+            {{form_row(formview.name)}}
+            {{form_row(formview.price)}}
+        </div>
+        <div class="col">
+            {{form_row(formview.picture)}}
+            {{form_row(formview.shortDescription)}}
+            {{form_row(formview.category)}}
+        </div>
+    </div>
+
+    <button class="btn btn-primary">
+        <i class="fas fa-save"> Créer le produit</i>   
+    </button>
+
+    {# <div class="row">
+        <div class="col">
+            {{form_row(formview.name)}}
+            {{form_row(formview.price)}}
+        </div>
+        <div class="col">
+            {{form_row(formview.shortDescription)}}
+            {{form_row(formview.category)}}
+        </div>
+    </div>
+
+    <button class="btn btn-primary">
+        <i class="fas fa-save">Créer le produit</i>   
+    </button> #}
+
+    {{form_end(formview)}}
+
+{% endblock %}
+
+{# Theme/Template personnalisé pour le formulaire de la page, need d'etre appelé en haut #}
+{# {% block form_row %}
+    <div class="group">
+        {{form_label(form)}}
+        {{form_widget(form, {'attr': {'class': 'form-control'}}) }}
+        {{form_help(form)}}
+        {{form_errors(form)}}
+    </div>
+{% endblock %} #}

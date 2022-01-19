@@ -38,3 +38,6 @@
 
 ### COmposant string de symfony
     - CMD : composer require string
+
+### Formulaires
+    - CMD : composer require form
