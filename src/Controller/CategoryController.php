@@ -13,13 +13,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
+
+
     #[Route('/admin/category/create', name: 'category_create')]
     public function create(Request $request, EntityManagerInterface $em, SluggerInterface $slugger)
     {
         $form = $this->createForm(CategoryType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
             $category->setSlug(strtolower($slugger->slug($category->getName())));
 
@@ -43,7 +45,7 @@ class CategoryController extends AbstractController
 
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
             return $this->redirectToRoute('homepage');
