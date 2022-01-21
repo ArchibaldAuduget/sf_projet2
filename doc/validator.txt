@@ -1,0 +1,7 @@
+NotBlank
+GreaterThan
+LessThan
+Length
+
+Petite astuce sympa, pas besoin de dump() le résultat du validator, 
+la barre de profiler Symfony met une alarme rouge en cas de Violation en bas de page et en cliquant dessus on retrouve le détail de la violation de contrainte ! :)

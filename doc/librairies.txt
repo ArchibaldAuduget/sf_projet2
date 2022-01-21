@@ -41,3 +41,6 @@
 
 ### Formulaires
     - CMD : composer require form
+
+### Validator :
+    - symfony require validator

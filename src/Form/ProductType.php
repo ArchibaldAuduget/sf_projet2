@@ -12,6 +12,7 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\Form\DataTransformer\CentimesTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,7 +27,9 @@ class ProductType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom du produit',
-                'attr' => ['placeholder' => 'Tapez le nom du produit']
+                'attr' => ['placeholder' => 'Tapez le nom du produit'],
+                'required' => false,
+                // 'constraints' => new NotBlank(['message' => "Validation du formulaire : le nom du produit ne peut pas être vide"])
             ])
             ->add('shortDescription', TextareaType::class, [
                 'label' => 'Description courte',
@@ -34,7 +37,9 @@ class ProductType extends AbstractType
             ])
             ->add('price', PriceType::class, [
                 'label' => 'Prix du produit',
-                'attr' => ['placeholder' => 'Tapez le prix du produit en €']
+                'attr' => ['placeholder' => 'Tapez le prix du produit en €'],
+                'required' => false,
+                // 'constraints' => new NotBlank(['message' => 'Le prix du produit est obligatoire'])
             ])
             ->add('picture', UrlType::class, [
                 'label' => 'Image du produit',
