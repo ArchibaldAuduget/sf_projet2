@@ -9,6 +9,7 @@ use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -29,12 +30,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class ProductController extends AbstractController
 {
-    #[Route('/{slug}', name: 'product_category')]
+    #[Route('/{slug}', name: 'product_category', priority: -1)]
     // On attribue le chemin {slug} à une variable
     public function category($slug, CategoryRepository $categoryRepository)
     {
@@ -170,7 +173,9 @@ class ProductController extends AbstractController
     }
 
     #[Route('/admin/product/{id}/edit', name: 'product_edit')]
-    public function edit($id, ProductRepository $productRepository, Request $request, EntityManagerInterface $em, ValidatorInterface $validator)
+    // Annottation qui controle l'accès. Ne pas oublier importer classe IsGranted
+    // #[IsGranted("ROLE_ADMIN", message: 'ptdr ta pa le droi')]
+    public function edit($id, ProductRepository $productRepository, Request $request, EntityManagerInterface $em, ValidatorInterface $validator, Security $security)
     {
         // $client = [
         //     'nom' => 'Chamla',
@@ -194,7 +199,18 @@ class ProductController extends AbstractController
             
         // ]);
 
+        // $user = $security->getUser();
+        // $user = $this->getUser();
 
+        // if ($user === null) {
+        //     return $this->redirectToRoute('app_login');
+        // }
+
+        // if ($this->isGranted("ROLE_ADMIN") === false) {
+        //     throw new AccessDeniedHttpException("Vous n'avez paaaaas le droouuaaat !");
+        // }
+        // Methode qui permet de controler l'accès
+        // $this->denyAccessUnlessGranted("ROLE_ADMIN", null, "Vous n'avez pas le droit d'accès");
 
         $product = $productRepository->find($id);
 

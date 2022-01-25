@@ -44,3 +44,6 @@
 
 ### Validator :
     - symfony require validator
+
+### Security :
+    - composer require security

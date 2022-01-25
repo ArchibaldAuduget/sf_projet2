@@ -38,3 +38,10 @@
 
 ### Formulaires
     - php bin/console make:form => Créer une classe de formulaire
+
+### secutiry :
+    - php bin/console make:user => créer une entité user
+    - php bin/console make:auth => créer un authenticator
+
+###Voter
+    - php bin/console make:voter => créer un voter

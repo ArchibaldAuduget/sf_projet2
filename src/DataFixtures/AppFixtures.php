@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
 use App\Entity\Product;
 use Liior\Faker\Prices;
 use App\Entity\Category;
@@ -10,16 +11,20 @@ use Bezhanov\Faker\Provider\Commerce;
 use Bluemmb\Faker\PicsumPhotosProvider;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
     protected $slugger;
+    protected $encoder;
 
     // Necessite le composer require string
-    public function __construct(SluggerInterface $slugger)
+    public function __construct(SluggerInterface $slugger, UserPasswordHasherInterface $encoder)
     {
         $this->slugger = $slugger;
+        $this->encoder = $encoder;
     }
 
     public function load(ObjectManager $manager): void
@@ -43,6 +48,28 @@ class AppFixtures extends Fixture
         $faker->addProvider(new \Liior\Faker\Prices($faker));
         $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
         $faker->addProvider(new \Bluemmb\Faker\PicsumPhotosProvider($faker));
+
+        $admin = new User;
+
+        $hash = $this->encoder->hashPassword($admin, "password");
+
+        $admin
+            ->setEmail("admin@gmail.com")
+            ->setPassword($hash)
+            ->setFullName("admin")
+            ->setRoles(['ROLE_ADMIN']);
+        $manager->persist($admin);
+
+        for($u = 0; $u < 5; $u++) {
+            $user = new User();
+            $hash = $this->encoder->hashPassword($user, "password");
+            $user
+                ->setEmail("user$u@gmail.com")
+                ->setFullName($faker->name())
+                ->setPassword($hash);
+            $manager->persist($user);
+
+        }
 
         // Ici on persiste 3 catégories, et pour chacune de ces 3 catégories on persiste entre 15 et 20 produits qui prendra sa catégorie.
         for ($c = 0; $c < 3; $c++) {
